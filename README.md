@@ -1,5 +1,7 @@
 ### Dockerfile
 
+<https://www.youtube.com/watch?v=7FK3bfzaIMo>
+
 ```dockerfile
 FROM  python:3
 LABEL "vendor"="klv"
