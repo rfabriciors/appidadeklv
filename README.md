@@ -1,15 +1,24 @@
 ### Dockerfile
 
 ```dockerfile
-FROM nginx:mainline-alpine
+FROM  python:3
 LABEL "vendor"="klv"
-LABEL version="v1.0"
-LABEL description="Aplicação de cálculo de idade com JavaScript"
+LABEL version="v1.1"
+LABEL description="Aplicação de cálculo de idade com JavaScript e servidor python"
 LABEL maintainer="rfabriciors@gmail.com"
 
-COPY www/ /usr/share/nginx/html
+RUN apt-get update -y && \
+   apt-get install -y python python3-pip python-dev
 
-EXPOSE 80
+RUN pip install Flask
+
+WORKDIR /app
+
+COPY . .
+
+EXPOSE 5000
+
+CMD [ "python", "./app.py"]
 ```
 
 ### deployment-appidadeklv.yaml
