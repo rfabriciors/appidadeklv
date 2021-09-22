@@ -123,3 +123,23 @@ kubectl describe pod <pod_name>
 .
 Liveness:       http-get http://:80/health.txt delay=0s timeout=1s period=10s #success=1 #failure=3
 ```
+
+## Automatizndo com o Ansible
+
+### Após instalar o ansible deve-se editar o arquivo /etc/ansible/ansible.cfg
+
+```file
+[defaults]
+interpreter_python=/usr/bin/python3
+```
+
+> É necessáro instalar o módulo community.kubernetes.k8s
+```bash
+
+pip3 install kubernetes
+pip3 install k8s
+pip3 install openshift
+ansible-galaxy collection install community.kubernetes
+
+ansible-playbook teste.yaml -e 'ansible_python_interpreter=/usr/bin/python3'
+```
