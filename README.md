@@ -1,18 +1,18 @@
-# Presentation of the project
+## Presentation of the project
 
 ### The objective this  project is implement a web application in a Kubernetes cluster with resources what grant security, stability and facility of monitoring. The subsequent lines describe how was implement each step of the solution proposed.
->
 
-# What this document apresent
+
+## What this document apresent
 ### The description of the Docker image, as well as the source code of the application, web pages and another components. Also includes Kubernetes manifests and Ansible playbooks.
->
 
-# What the behavior expected of the application
+
+## What the behavior expected of the application
 ### The application is a simple age calculator that show a representative image of the character. Is solicited a born year and the sex of the character. Clicked on button the age is calculated and the image is showed.
 
 ![image](screenshots/klv_01_red.png)
 
-### The main url is something like <http://address.xyz>. Though, other four variants exists. This variants change the behaviour or get status of the functioning of the application.
+#### The main url is something like <http://address.xyz>. Though, other four variants exists. This variants change the behaviour or get status of the functioning of the application.
 
 The url <http://address.xyz/health> return the disponibility of the application.
 
@@ -26,13 +26,13 @@ The url <http://address.xyz/sethealth> make the app break.
 
 > This force the Kubernetes kill the pod, putting another in your place.
 
-The url <http://address.xyz/setunready/<time in seconds> make the app unavailable for new requests for x seconds. Simulating a high load environment.
+The url <http://address.xyz/setunready/time_in_seconds/> make the app unavailable for new requests for x seconds. Simulating a high load environment.
 
 > This instruct the Kubernetes withdraw the end point of the pod impaired until the load normalize.
 
-# The Dockerfile
+## The Dockerfile
 
-### Dockerfile
+#### Dockerfile
 
 ```dockerfile
 FROM  python:3
@@ -55,11 +55,11 @@ EXPOSE 5000
 CMD [ "python", "./app.py"]
 ```
 
-# The Kubernetes manifests
+## The Kubernetes manifests
 
-## The namespace creation
+### The namespace creation
 
-### create-namespace.yaml
+#### create-namespace.yaml
 
 ```yaml
 apiVersion: v1
@@ -68,9 +68,9 @@ metadata:
 name: klever
 ```
 
-## The Kubernetes manifest to deploy stage of the application
+### The Kubernetes manifest to deploy stage of the application
 
-### deployment-appidadeklv.yaml
+#### deployment-appidadeklv.yaml
 
 ```yaml
 apiVersion: apps/v1
@@ -116,9 +116,9 @@ spec:
         resources: {}
 status: {}
 ```
-## The Kubernetes service creation
+### The Kubernetes service creation
 
-### service-appidadeklv.yaml
+#### service-appidadeklv.yaml
 
 ```yaml
 apiVersion: v1
@@ -141,7 +141,7 @@ status:
   loadBalancer: {}
 ```
 
-# The show time
+## The show time
 
 Considering that exists a Kubernetes cluster available and that the kubectl command is configured, deploying the application is simply executing the commands below:
 
@@ -157,7 +157,7 @@ The livenessProbe and readinessProbe can be verified through the pod description
 kubectl describe pod <pod_name>
 ```
 
-# Automating with Ansible
+## Automating with Ansible
 
 After installing the Ansible in an environment that access the Kubernetes cluster through the kubectl command, must have install the following modules installed:
 
@@ -170,18 +170,18 @@ ansible-galaxy collection install community.kubernetes
 ansible-playbook teste.yaml -e 'ansible_python_interpreter=/usr/bin/python3'
 ```
 
-### Is recommended to put the python3 like default interpreter to Ansible /etc/ansible/ansible.cfg. To this, edit the file ansible.cfg
+#### Is recommended to put the python3 like default interpreter to Ansible /etc/ansible/ansible.cfg. To this, edit the file ansible.cfg
 
-### ansible.cfg
+#### ansible.cfg
 
 ```file
 [defaults]
 interpreter_python=/usr/bin/python3
 ```
 
-## The Ansible playbook file is basically the three manifests files of the Kubernetes in a single file with especifics instructions of the Ansible.
+### The Ansible playbook file is basically the three manifests files of the Kubernetes in a single file with especifics instructions of the Ansible.
 
-### ansible_deploy.yaml
+#### ansible_deploy.yaml
 
 ```yaml
 ---
@@ -267,12 +267,12 @@ interpreter_python=/usr/bin/python3
           loadBalancer: {}
 ```
 
-## Finally, run the Ansible playbook...
+### Finally, run the Ansible playbook...
 
 ```bash
 ansible-playbook ansible/ansible_deploy.yaml
 ```
-# We admire...
+## We admire...
 
 ![image](screenshots/klv_02_red.png)
 
