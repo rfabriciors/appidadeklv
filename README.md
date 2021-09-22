@@ -10,6 +10,8 @@
 # What the behavior expected of the application
 ### The application is a simple age calculator that show a representative image of the character. Is solicited a born year and the sex of the character. Clicked on button the age is calculated and the image is showed.
 
+![image](screenshots/klv_01_red.png)
+
 ### The main url is something like <http://address.xyz>. Though, other four variants exists. This variants change the behaviour or get status of the functioning of the application.
 
 The url <http://address.xyz/health> return the disponibility of the application.
@@ -270,5 +272,14 @@ interpreter_python=/usr/bin/python3
 ```bash
 ansible-playbook ansible/ansible_deploy.yaml
 ```
+# We admire...
 
-![image](appidade/static/img/foto-bebe-f.png)
+![image](screenshots/klv_02_red.png)
+
+> Active monitoring
+
+![image](screenshots/klv_03_red.png)
+
+![image](screenshots/klv_04_red.png)
+
+![image](screenshots/klv_05_red.png)
