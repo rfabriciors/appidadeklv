@@ -148,7 +148,7 @@ Considering that exists a Kubernetes cluster available and that the kubectl comm
 ```bash
 kubectl apply -f create-namespace.yaml
 kubectl apply -f deployment-appidadeklv.yaml
-kubectl apply -f deployment-appidadeklv.yaml
+kubectl apply -f service-appidadeklv.yaml
 ```
 
 The livenessProbe and readinessProbe can be verified through the pod description:
